@@ -27,7 +27,7 @@ Install the required Python packages with `pip` (or `pip3`)
 pip install -r requirements.txt
 ```
 
-Set up the database (make sure you have `albumratingsite/secret_settings.py`)...
+Set up the database (make sure you have `albumratingsite/secret_settings.py`), where `python` is the python3 interpreter...
 ```
 python manage.py migrate
 ```
