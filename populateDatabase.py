@@ -29,6 +29,8 @@ def makeDatabase():
         data/albums.csv, and create entries in the database.
     """
     
+    print('Getting data...')
+    
     with open('data/albums.csv') as fileobj:
         text = fileobj.read()
         
