@@ -5,13 +5,17 @@ from django.views.generic import ListView
 from .models import Album, Question
 
 
-class ResultsView(ListView):
-    template_name = 'TakeItOrSleeveIt/results.html'
-    context_object_name = 'sorted_album_list'
-    
-    def get_queryset(self):
-        """Return the albums, sorted by rating, in descending order."""
-        return Album.objects.order_by('-rating')
+#class ResultsView(ListView):
+#    template_name = 'TakeItOrSleeveIt/results.html'
+#    context_object_name = 'sorted_album_list'
+#    
+#    def get_queryset(self, search=''):
+#        """Return the albums, sorted by rating, in descending order."""
+#        a1 = Album.objects.filter(title__icontains=search)
+#        a2 = Album.objects.filter(artist__icontains=search)
+#        a3 = Album.objects.filter(year__icontains=search)
+#        results = a1 | a2 | a3
+#        return results.order_by('-rating')
 
 
 def index(request):
@@ -28,11 +32,30 @@ def index(request):
     return render(request, 'TakeItOrSleeveIt/index.html', context)
 
 
-#def results(request):
-#    # sort albums by rating, in descending order
-#    sorted_album_list = Album.objects.order_by('-rating')
-#    context = {'sorted_album_list':sorted_album_list}
-#    return render(request, 'TakeItOrSleeveIt/results.html', context)
+def results(request, search=''):
+    
+    try:
+        search_term = request.GET['search']
+    except:
+        search_term = ''
+    
+    # search title, artist and year fields for the `search` string
+    a1 = Album.objects.filter(title__icontains=search_term)
+    a2 = Album.objects.filter(artist__icontains=search_term)
+    a3 = Album.objects.filter(year__icontains=search_term)
+    # merge the filtered datasets
+    results = a1 | a2 | a3
+    # sort albums by rating, in descending order
+    sorted_album_list = results.order_by('-rating')
+    
+    if search_term:
+        search_placeholder = "Showing results for: '{}'".format(search_term)
+    else:
+        search_placeholder = 'Search...'
+    context = {'sorted_album_list':sorted_album_list,
+               'search_placeholder':search_placeholder}
+    print(sorted_album_list)
+    return render(request, 'TakeItOrSleeveIt/results.html', context)
 
 
 def vote(request):

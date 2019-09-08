@@ -10,19 +10,25 @@
 </head>
 
 <body>
-{% if sorted_album_list %}
-<!-- <input type="text" id="myInput" align="center" onkeyup="searchFunction()" placeholder="Search for albums..."> -->
 
+<form action="{% url 'TakeItOrSleeveIt:results' %}" method="get">
+ <div align="center">
+    <input type="text" name="search" id="myInput" align="center" placeholder="{{ search_placeholder }}">
+    <input type="submit" value="search">
+</div>
+</form>
+
+{% if sorted_album_list %}
     <table id="resultsTable" align="center">
     <tr class="header">
-        <th style="width:30%;"></th>
-        <th style="width:50%;">Album</th>
-        <th style="width:20%;">Rating (%)</th>
+        <th width="25%"></th>
+        <th width="50%">Album</th>
+        <th width="25%">Rating (%)</th>
     </tr>
     {% for album in sorted_album_list %}
         <tr>
-            <td> <img src="{{ album.img }}" alt="{{ album.title }}" height="100" width="100"> </td>
-            <td> {{ album.title }}, {{ album.artist }} ({{ album.year }}) </td>
+            <td> <img src="{{ album.img }}" alt="{{ album.title }}" height="100" width="100">  </td>
+            <td> <i>{{ album.title }}</i>, {{ album.artist }} ({{ album.year }}) </td>
             <td> {{ album.rating }} </td>
         </tr>
     {% endfor %}
@@ -32,29 +38,3 @@
 {% endif %}
 
 </body>
-
-
-
-<script>
-function searchFunction() {
-  // Declare variables
-  var input, filter, table, tr, td, i, txtValue;
-  input = document.getElementById("myInput");
-  filter = input.value.toUpperCase();
-  table = document.getElementById("myTable");
-  tr = table.getElementsByTagName("tr");
-
-  // Loop through all table rows, and hide those who don't match the search query
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[0];
-    if (td) {
-      txtValue = td.textContent || td.innerText;
-      if (txtValue.toUpperCase().indexOf(filter) > -1) {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
-    }
-  }
-}
-</script>
