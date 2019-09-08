@@ -79,7 +79,7 @@ def generateTestData():
     all_albums = Album.objects.all()
     # for each album, generate a random number of votes
     for album in all_albums:
-        n = 1000
+        n = 80
         votes = random.randint(0, n)
         album.votes = votes
         album.contests = n
