@@ -10,8 +10,8 @@ Choose wisely!
 
 # Requirements
 
-- Python3.3+
-- python3-venv
+- Python3.5+
+- Django 2.2
 - [wptools](https://pypi.org/project/wptools/)
 
 
@@ -20,18 +20,8 @@ Choose wisely!
 
 # Running it yourself
 
-Create a virtual environment in the TakeItOrSleeve it directory.
-These steps use `venv`, available from Python 3.3+. More information
-on `venv` and `virtualenv` can be found [here](https://packaging.python.org/tutorials/installing-packages/#creating-virtual-environments).
-
 ```
 git clone git@github.com:keziah55/TakeItOrSleeveIt.git
 cd TakeItOrSleeveIt
-python3 -m venv TakeOrSleeveEnv
 ```
 
-
-```
-source TakeOrSleeveEnv/bin/activate
-```
-In Windows, run the activate script directly.
