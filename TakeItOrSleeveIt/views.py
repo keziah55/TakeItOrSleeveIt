@@ -54,7 +54,6 @@ def results(request, search=''):
         search_placeholder = 'Search...'
     context = {'sorted_album_list':sorted_album_list,
                'search_placeholder':search_placeholder}
-    print(sorted_album_list)
     return render(request, 'TakeItOrSleeveIt/results.html', context)
 
 
