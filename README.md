@@ -24,4 +24,9 @@ Choose wisely!
 git clone git@github.com:keziah55/TakeItOrSleeveIt.git
 cd TakeItOrSleeveIt
 ```
+```
+python populateDatabase -m
+python manage.py makemigrations
+python manage.py migrate
+```
 

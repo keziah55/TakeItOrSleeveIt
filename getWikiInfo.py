@@ -53,6 +53,7 @@ def _getArtist(data):
     try:
         artist = data['artist']
         artist = _checkLink(artist)
+        artist = _checkBar(artist)
         return artist
     except KeyError:
         msg = "Could not find 'artist' in infobox"
@@ -87,6 +88,16 @@ def _checkList(s):
         {{}}.
     """
     return _checkDblBrackets(s, bracket='curly')
+
+def _checkBar(s):
+    """ If '|' is in string `s`, return everything on the RHS of it.
+        Otherwise, return `s` untouched.
+    """
+    if '|' in s:
+        rhs = s.split('|')[1]
+        return rhs
+    else:
+        return s
     
 def _checkDblBrackets(s, bracket='round'):
     """ Check if string `s` contains one or more sets of double brackets.
@@ -159,9 +170,9 @@ def _rmvDblBrackets(s, bracket='round'):
 
 if __name__ == '__main__':
     
-#    title = 'Bitches Brew'
-#    title = 'Revolver (Beatles album)'
-    title = 'Autobahn (album)'
-    imgIdx = 2
+#    name = 'Bitches Brew'
+#    name = 'Revolver (Beatles album)'
+#    name = 'Autobahn (album)'
+    name = "Sign o' the Times"
     
-    info = getInfo(title, imgIdx=imgIdx)
+    info = getInfo(name)
