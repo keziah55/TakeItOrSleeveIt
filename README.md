@@ -18,7 +18,7 @@ Choose wisely!
 
 Download this repository...
 ```
-git clone git@github.com:keziah55/TakeItOrSleeveIt.git
+git clone https://github.com/keziah55/TakeItOrSleeveIt.git
 cd TakeItOrSleeveIt
 ```
 
@@ -27,7 +27,7 @@ Install the required Python packages with `pip` (or `pip3`)
 pip install -r requirements.txt
 ```
 
-Set up the database (make sure you have `albumratingsite/secret_settings.py`), where `python` is the python3 interpreter...
+Set up the database, where `python` is the python3 interpreter (make sure you have `albumratingsite/secret_settings.py`)...
 ```
 python manage.py migrate
 ```
