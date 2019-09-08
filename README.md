@@ -7,7 +7,6 @@ Your choices then go towards a ranking of album art.
 Choose wisely!
 
 
-
 # Requirements
 
 - Python3.5+
@@ -15,19 +14,31 @@ Choose wisely!
 - [wptools](https://pypi.org/project/wptools/)
 
 
-
-
-
 # Running it yourself
 
+Download this repository...
 ```
 git clone git@github.com:keziah55/TakeItOrSleeveIt.git
 cd TakeItOrSleeveIt
+```
+
+Install the required Python packages with `pip` (or `pip3`)
+```
 pip install -r requirements.txt
+```
+
+Set up the database...
+```
 python manage.py migrate
+```
+...fill the database...
+```
 python populateDatabase -cm
+```
+... then run it!
+```
 python manage.py runserver
 ```
 
-Then, going to [http://127.0.0.1:8000/takeitorsleeveit/](http://127.0.0.1:8000/takeitorsleeveit/) will display the site.
+Now, going to [http://127.0.0.1:8000/takeitorsleeveit/](http://127.0.0.1:8000/takeitorsleeveit/) will display the site.
 
