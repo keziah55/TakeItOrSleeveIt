@@ -40,17 +40,21 @@ body {
   font-size: 18px; /* Increase font-size */
 }
 
-#myTable th, #myTable td {
-  text-align: center; /* center-align text */
+#resultsTable th {
+  text-align: center;
   padding: 12px; /* Add padding */
 }
 
-#myTable tr {
+#resultsTable td {
+  padding: 12px; /* Add padding */
+}
+
+#resultsTable tr {
   /* Add a bottom border to all table rows */
   border-bottom: 1px solid #ddd;
 }
 
-#myTable tr.header, #myTable tr:hover {
+#resultsTable tr.header, #resultsTable tr:hover {
   /* Add a grey background color to the table header and on hover */
   background-color: #f1f1f1;
 }

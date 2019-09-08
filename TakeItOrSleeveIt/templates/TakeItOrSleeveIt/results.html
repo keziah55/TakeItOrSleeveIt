@@ -6,6 +6,11 @@
 <link rel="stylesheet" type="text/css" href="{% static 'TakeItOrSleeveIt/style.css' %}">
 
 <h1 align="center" margin-top=1cm>Results</h1>
+<form action="http://127.0.0.1:8000/takeitorsleeveit/">
+<div align="center">
+    <input type="submit" value="Back to contest"/>
+</div>
+</form>
 
 </head>
 
@@ -21,15 +26,15 @@
 {% if sorted_album_list %}
     <table id="resultsTable" align="center">
     <tr class="header">
-        <th width="25%"></th>
-        <th width="50%">Album</th>
-        <th width="25%">Rating (%)</th>
+        <th style="width:25%; text-align:right" ></th>
+        <th style="width:50%; text-align:center">Album</th>
+        <th style="width:25%; text-align:left"  >Rating (%)</th>
     </tr>
     {% for album in sorted_album_list %}
         <tr>
-            <td> <img src="{{ album.img }}" alt="{{ album.title }}" height="100" width="100">  </td>
-            <td> <i>{{ album.title }}</i>, {{ album.artist }} ({{ album.year }}) </td>
-            <td> {{ album.rating }} </td>
+            <td align="right" > <img src="{{ album.img }}" alt="{{ album.title }}" height="100" width="100">  </td>
+            <td align="center"> <i>{{ album.title }}</i>, {{ album.artist }} ({{ album.year }}) </td>
+            <td align="left"  > {{ album.rating }} </td>
         </tr>
     {% endfor %}
     </table>
