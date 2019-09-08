@@ -3,7 +3,13 @@
 """
 Make (or clear) the database.
 
-Read the csv file, look up each album and add entry to database.
+Read the csv file, look up each album and add entry to database. The database
+can then be filled with random test data, if desired.
+
+If multiple options are provided, they will be executed in the following order:
+    1) Clear the database
+    2) Make the database
+    3) Generate test data
 """
 
 import os
@@ -13,6 +19,7 @@ import django
 django.setup()
 
 import argparse
+import random
 
 from getWikiInfo import getInfo
 from TakeItOrSleeveIt.models import Album
@@ -58,7 +65,20 @@ def makeDatabase():
         
 def clearDatabase():
     Album.objects.all().delete()
-        
+    print("Cleared database")
+    
+def generateTestData():
+    all_albums = Album.objects.all()
+    # for each album, generate a random number of votes
+    for album in all_albums:
+        n = 1000
+        votes = random.randint(0, n)
+        album.votes = votes
+        album.contests = n
+        album.rating = 100 * (album.votes / album.contests) # % rating
+        album.save()
+    print('Generated test data')
+    
         
 if __name__ == '__main__':
 
@@ -68,6 +88,8 @@ if __name__ == '__main__':
                         action='store_true')
     parser.add_argument('-c', '--clear', help='Clear database',
                         action='store_true')
+    parser.add_argument('-t', '--test', help='Generate test data',
+                        action='store_true')
 
     args = parser.parse_args()
     
@@ -76,5 +98,8 @@ if __name__ == '__main__':
         
     if args.make:
         makeDatabase()
+        
+    if args.test:
+        generateTestData()
     
     

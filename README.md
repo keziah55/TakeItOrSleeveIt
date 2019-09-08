@@ -31,7 +31,7 @@ Set up the database (make sure you have `albumratingsite/secret_settings.py`), w
 ```
 python manage.py migrate
 ```
-...fill the database...
+...create the database...
 ```
 python populateDatabase -cm
 ```
@@ -42,3 +42,8 @@ python manage.py runserver
 
 Now, going to [http://127.0.0.1:8000/takeitorsleeveit/](http://127.0.0.1:8000/takeitorsleeveit/) will display the site.
 
+You can fill the database with random test data with
+```
+python populateDatabase -t
+```
+See `python populateDatabase --help` for full list of args.
