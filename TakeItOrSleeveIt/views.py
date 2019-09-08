@@ -1,21 +1,7 @@
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.shortcuts import render
-from django.views.generic import ListView
 from .models import Album, Question
-
-
-#class ResultsView(ListView):
-#    template_name = 'TakeItOrSleeveIt/results.html'
-#    context_object_name = 'sorted_album_list'
-#    
-#    def get_queryset(self, search=''):
-#        """Return the albums, sorted by rating, in descending order."""
-#        a1 = Album.objects.filter(title__icontains=search)
-#        a2 = Album.objects.filter(artist__icontains=search)
-#        a3 = Album.objects.filter(year__icontains=search)
-#        results = a1 | a2 | a3
-#        return results.order_by('-rating')
 
 
 def index(request):

@@ -67,6 +67,7 @@ def clearDatabase():
     Album.objects.all().delete()
     print("Cleared database")
     
+    
 def generateTestData():
     all_albums = Album.objects.all()
     # for each album, generate a random number of votes
