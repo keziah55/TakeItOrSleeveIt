@@ -1,7 +1,17 @@
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.shortcuts import render
+from django.views.generic import ListView
 from .models import Album, Question
+
+
+class ResultsView(ListView):
+    template_name = 'TakeItOrSleeveIt/results.html'
+    context_object_name = 'sorted_album_list'
+    
+    def get_queryset(self):
+        """Return the albums, sorted by rating, in descending order."""
+        return Album.objects.order_by('-rating')
 
 
 def index(request):
@@ -18,11 +28,11 @@ def index(request):
     return render(request, 'TakeItOrSleeveIt/index.html', context)
 
 
-def results(request):
-    # sort albums by rating, in descending order
-    sorted_albums = Album.objects.order_by('-rating')
-    context = {'sorted_albums':sorted_albums}
-    return render(request, 'TakeItOrSleeveIt/results.html', context)
+#def results(request):
+#    # sort albums by rating, in descending order
+#    sorted_album_list = Album.objects.order_by('-rating')
+#    context = {'sorted_album_list':sorted_album_list}
+#    return render(request, 'TakeItOrSleeveIt/results.html', context)
 
 
 def vote(request):
@@ -53,3 +63,5 @@ def vote(request):
     # user hits the Back button.
     return HttpResponseRedirect(reverse('TakeItOrSleeveIt:index', 
                                         args=()))
+    
+    
