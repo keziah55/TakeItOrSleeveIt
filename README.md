@@ -26,6 +26,7 @@ Install the required Python packages with `pip` (or `pip3`)
 ```
 pip install -r requirements.txt
 ```
+(If you have any trouble installing `pycurl`, I found [this](https://stackoverflow.com/a/24051044/8591914) helpful.)
 
 Set up the database, where `python` is the python3 interpreter (make sure you have `albumratingsite/secret_settings.py`)...
 ```

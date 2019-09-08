@@ -1,16 +1,17 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Tue Sep  3 16:00:06 2019
-
-@author: keziah
+Get album data from the infobox on a Wikipedia page
 """
 
 import re
 import wptools
 
 def getInfo(name):
-    
+    """ Returns the album title, artist, year and cover art url from a given
+        Wikipedia page `name`.
+    """
+
     # if title doesn't exist, no error is thrown
     page = wptools.page(name)
     try:
@@ -19,6 +20,7 @@ def getInfo(name):
         msg = "Could not find Wikipedia article for '{}'".format(name)
         raise RuntimeError(msg)
         
+    # get the infobox
     info = prs.data['infobox']
     if info is None:
         msg = "No infobox for Wikipedia article on '{}'".format(name)
@@ -26,6 +28,7 @@ def getInfo(name):
         
     else:
         try:
+            # get data of interest from the infobox
             title = _getTitle(info)
             artist = _getArtist(info)
             artist = _capitalise(artist)
@@ -44,6 +47,7 @@ def _capitalise(s):
 
 
 def _getTitle(data):
+    """ Get album title from infobox `data`. """
     try:
         return data['name']
     except KeyError:
@@ -51,6 +55,9 @@ def _getTitle(data):
         raise RuntimeError(msg)
         
 def _getArtist(data):
+    """ Get artist from infobox `data`, removing any symbols signifying links
+        and captialising the first letter of every word.
+    """
     try:
         artist = data['artist']
         artist = _checkLink(artist)
@@ -61,6 +68,11 @@ def _getArtist(data):
         raise RuntimeError(msg)
         
 def _getYear(data):
+    """ Get release year from infobox `data` (as an int). 
+    
+        There is no structure to how the release date is stored in the infobox,
+        so this function simply uses a regex to find a four digit number.
+    """
     try:
         released = data['released']
         srch = re.search(r'\d\d\d\d', released)
@@ -72,6 +84,7 @@ def _getYear(data):
         raise RuntimeError(msg)
         
 def _getImage(parse):
+    """ Get the url of the first (and should be only) image. """
     try:
         url = parse.data['image'][0]['url']
         return url
@@ -170,10 +183,7 @@ def _rmvDblBrackets(s, bracket='round'):
 
 
 if __name__ == '__main__':
-    
-#    name = 'Bitches Brew'
-#    name = 'Revolver (Beatles album)'
-#    name = 'Autobahn (album)'
+
     name = "Sign o' the Times"
     
     info = getInfo(name)

@@ -25,6 +25,9 @@ from getWikiInfo import getInfo
 from TakeItOrSleeveIt.models import Album
 
 def makeDatabase():
+    """ Get info from the Wikipedia pages of the albums listed in 
+        data/albums.csv, and create entries in the database.
+    """
     
     with open('data/albums.csv') as fileobj:
         text = fileobj.read()
@@ -64,11 +67,13 @@ def makeDatabase():
             
         
 def clearDatabase():
+    """ Remove all entries from the Albums table """
     Album.objects.all().delete()
     print("Cleared database")
     
     
 def generateTestData():
+    """ For every album in Albums, generate a random rating """
     all_albums = Album.objects.all()
     # for each album, generate a random number of votes
     for album in all_albums:

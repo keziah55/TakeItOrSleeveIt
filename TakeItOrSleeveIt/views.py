@@ -18,28 +18,34 @@ def index(request):
     return render(request, 'TakeItOrSleeveIt/index.html', context)
 
 
-def results(request, search=''):
+def results(request):
     
+    # see if the `request` object has a 'search' item
     try:
-        search_term = request.GET['search']
+        search = request.GET['search']
+    # if not, use empty string
     except:
-        search_term = ''
+        search = ''
     
     # search title, artist and year fields for the `search` string
-    a1 = Album.objects.filter(title__icontains=search_term)
-    a2 = Album.objects.filter(artist__icontains=search_term)
-    a3 = Album.objects.filter(year__icontains=search_term)
+    a1 = Album.objects.filter(title__icontains=search)
+    a2 = Album.objects.filter(artist__icontains=search)
+    a3 = Album.objects.filter(year__icontains=search)
     # merge the filtered datasets
     results = a1 | a2 | a3
     # sort albums by rating, in descending order
     sorted_album_list = results.order_by('-rating')
     
-    if search_term:
-        search_placeholder = "Showing results for: '{}'".format(search_term)
+    # make string to display in search bar
+    if search:
+        search_placeholder = "Showing results for: '{}'".format(search)
     else:
         search_placeholder = 'Search...'
+    
+    # args to be substituted into the templates    
     context = {'sorted_album_list':sorted_album_list,
                'search_placeholder':search_placeholder}
+    
     return render(request, 'TakeItOrSleeveIt/results.html', context)
 
 
@@ -48,13 +54,13 @@ def vote(request):
     # Keys will be 'csrfmiddlewaretoken', 'ID0_ID1.x', 'ID0_ID1.y', 
     # where ID0 is the id of the selected album and ID1 is the id of the other
     # album presented.
-    # (here must be a better way of doing this...
+    # There must be a better way of doing this...
     keys = list(request.POST.keys())
     keys.remove('csrfmiddlewaretoken')
     album_id = keys[0] # take the first remaining key
     album_ids, _ = album_id.split('.') # get the ID, remove the 'x' (or 'y')
     album_ids = album_ids.split('_') # split into the two IDs
-    album_ids = [int(album_id) for album_id in album_ids]
+    album_ids = [int(album_id) for album_id in album_ids] # cast as ints
     
     # For both IDs, increment the number of contests and the rating
     # For the first ID, increment the number of votes
@@ -69,7 +75,6 @@ def vote(request):
     # Always return an HttpResponseRedirect after successfully dealing
     # with POST data. This prevents data from being posted twice if a
     # user hits the Back button.
-    return HttpResponseRedirect(reverse('TakeItOrSleeveIt:index', 
-                                        args=()))
+    return HttpResponseRedirect(reverse('TakeItOrSleeveIt:index', args=()))
     
     
