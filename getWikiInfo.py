@@ -37,6 +37,7 @@ def getInfo(name):
     
     
 def _capitalise(s):
+    """ Capitalise the first letter of every word in string `s` """
     words = s.split(' ')
     words = [word.capitalize() for word in words]
     return ' '.join(words)

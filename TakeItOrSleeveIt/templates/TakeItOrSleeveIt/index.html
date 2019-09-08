@@ -17,7 +17,7 @@
     {% csrf_token %}
         <div class="row">
             <div class="column">
-            <input type="image" name="{{ album0.id }}" value="" src="{{ album0.img }}">
+            <input type="image" name="{{ album0.id }}_{{ album1.id }}" value="" src="{{ album0.img }}" width=300px height=300px>
                 <label> 
                     <p><i>{{ album0.title }}</i></p>
                     <p>{{ album0.artist }}</p>
@@ -26,7 +26,7 @@
             </div>
             
             <div class="column">
-                <input type="image" name="{{ album1.id }}" value="" src="{{ album1.img }}">
+                <input type="image" name="{{ album1.id }}_{{ album0.id }}" value="" src="{{ album1.img }}" width=300px height=300px>
                 <label>
                     <p><i>{{ album1.title }}</i></p>
                     <p>{{ album1.artist }}</p>
