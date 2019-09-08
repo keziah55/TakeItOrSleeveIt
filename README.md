@@ -9,8 +9,8 @@ Choose wisely!
 
 # Requirements
 
-- Python3.5+
-- Django 2.2
+- [Python3.5+](https://www.python.org/download/releases/3.0/)
+- [Django 2.2](https://www.djangoproject.com/)
 - [wptools](https://pypi.org/project/wptools/)
 
 
@@ -27,7 +27,7 @@ Install the required Python packages with `pip` (or `pip3`)
 pip install -r requirements.txt
 ```
 
-Set up the database...
+Set up the database (make sure you have `albumratingsite/secret_settings.py`)...
 ```
 python manage.py migrate
 ```
