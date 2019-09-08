@@ -23,6 +23,7 @@ Choose wisely!
 ```
 git clone git@github.com:keziah55/TakeItOrSleeveIt.git
 cd TakeItOrSleeveIt
+pip install -r requirements.txt
 ```
 ```
 python populateDatabase -m
