@@ -83,8 +83,8 @@ def _checkLink(s):
     """
     return _checkDblBrackets(s, bracket='square')
 
-def _checkList(s):
-    """ Check if string `s` in a list(?) in the info box, i.e. is wrapped in 
+def _checkTemplate(s):
+    """ Check if string `s` in a template in the info box, i.e. is wrapped in 
         {{}}.
     """
     return _checkDblBrackets(s, bracket='curly')

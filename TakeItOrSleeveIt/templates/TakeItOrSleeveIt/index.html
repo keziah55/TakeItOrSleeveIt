@@ -1,0 +1,36 @@
+{% load static %}
+
+<head>
+<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+<link rel="stylesheet" type="text/css" href="{% static 'TakeItOrSleeveIt/style.css' %}">
+
+<h1 align="center" margin-top=1cm>Choose your favourite!</h1>
+
+</head>
+
+<body>
+
+{% if album0 and album1 %}
+    <div class="row">
+        <div class="column">
+            <img src="{{ album0.img }}" alt="{{ album0.title }}" height=300px width=300px>
+            <p><i>{{ album0.title }}</i></p>
+            <p>{{ album0.artist }}</p>
+            <p>{{ album0.year }}</p>
+        </div>
+        
+        <div class="column">
+            <img src="{{ album1.img }}" alt="{{ album1.title }}" height=300px width=300px>
+            <p><i>{{ album1.title }}</i></p>
+            <p>{{ album1.artist }}</p>
+            <p>{{ album1.year }}</p>
+        </div>
+    </div>
+
+{% else %}
+    <p>No albums are available.</p>
+{% endif %}
+
+</body>

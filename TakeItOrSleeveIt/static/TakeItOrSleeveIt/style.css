@@ -1,0 +1,22 @@
+h1 {
+  color: #0b46a3;
+  font-family: 'Lato';
+}
+
+body {
+  font-family: 'Lato';
+  font-size: 16pt;
+}
+
+.row {
+  display: flex;
+  text-align: center; 
+  justify-content: center;
+  align-items: center;
+}
+
+.column {
+  flex: 0 0 200px;
+  padding: 100px;
+  align-self: center
+}
