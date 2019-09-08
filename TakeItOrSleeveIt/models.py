@@ -13,7 +13,7 @@ class Album(models.Model):
     # no. of times presented to users
     contests = models.PositiveIntegerField(default=0) 
     # 100*votes/contests %
-    rating = models.FloatField(default=0) 
+    rating = models.DecimalField(default=0, max_digits=3, decimal_places=0) 
     
     def __str__(self):
         s = "{}, {} ({})".format(self.title, self.artist, self.year)

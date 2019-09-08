@@ -12,15 +12,32 @@ body {
   display: flex;
   text-align: center; 
   justify-content: center;
-  align-items: center;
+  align-items: top;
 }
 
 .column {
   flex: 0 0 200px;
-  padding: 100px;
-  align-self: center
+  padding: 50px;
+  align-self: top
 }
 
+input[type=submit] {
+  border: none;
+  border-radius: 12px;
+  color: black;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  transition-duration: 0.4s;
+  background-color: #e7e7e7;
+}
+
+input[type=submit]:hover {
+  background-color: #d1d1d1;
+  color: black;
+}
 
 #myInput {
   background-image: 'searchicon.png'; /* Add a search icon to input */
