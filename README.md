@@ -24,10 +24,10 @@ Choose wisely!
 git clone git@github.com:keziah55/TakeItOrSleeveIt.git
 cd TakeItOrSleeveIt
 pip install -r requirements.txt
-```
-```
-python populateDatabase -m
-python manage.py makemigrations
 python manage.py migrate
+python populateDatabase -cm
+python manage.py runserver
 ```
+
+Then, going to [http://127.0.0.1:8000/takeitorsleeveit/](http://127.0.0.1:8000/takeitorsleeveit/) will display the site.
 
