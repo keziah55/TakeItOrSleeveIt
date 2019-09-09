@@ -1,2 +1,4 @@
 Django
 wptools
+beautifulsoup4
+requests

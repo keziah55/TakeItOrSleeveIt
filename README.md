@@ -11,8 +11,8 @@ Choose wisely!
 
 - [Python3.5+](https://www.python.org/download/releases/3.0/)
 - [Django 2.2](https://www.djangoproject.com/)
-- [beautifulsoup4](https://www.crummy.com/software/BeautifulSoup/bs4/doc/#installing-beautiful-soup)
-- [requests](https://pypi.org/project/requests/)
+- [BeautifulSoup4](https://www.crummy.com/software/BeautifulSoup/bs4/doc/#installing-beautiful-soup)
+- [Requests](https://pypi.org/project/requests/)
 
 
 # Running it yourself
