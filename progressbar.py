@@ -5,6 +5,7 @@ ProgressBar class
 """
 
 import shutil
+import os
 
 class ProgressBar:
     
@@ -50,7 +51,7 @@ class ProgressBar:
         if p < 1:
             end = '\r'
         else:
-            end = '\n'
+            end = os.linesep
             
         print(show, end=end, flush=True)
         
