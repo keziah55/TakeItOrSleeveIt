@@ -21,8 +21,9 @@ django.setup()
 import argparse
 import random
 
-from getWikiInfo import getInfo
 from TakeItOrSleeveIt.models import Album
+from getWikiInfo import getInfo
+from progressbar import ProgressBar
 
 def makeDatabase():
     """ Get info from the Wikipedia pages of the albums listed in 
@@ -40,7 +41,11 @@ def makeDatabase():
     
     failed = []
     
-    for album in albums:
+    # progress bar
+    pgbr = ProgressBar(len(albums))
+#    pgbr.progress(0)
+    
+    for n, album in enumerate(albums):
         # csv data
         title, artist, wiki = album
         # get info, either from Wiki article title or from album title
@@ -58,7 +63,9 @@ def makeDatabase():
             
         except Exception as err:
             failed.append(title)
-            print(err)
+#            print(err)
+            
+        pgbr.progress(n+1)
         
     if len(failed) > 0:
         for fail in failed:

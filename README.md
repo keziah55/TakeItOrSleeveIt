@@ -11,7 +11,8 @@ Choose wisely!
 
 - [Python3.5+](https://www.python.org/download/releases/3.0/)
 - [Django 2.2](https://www.djangoproject.com/)
-- [wptools](https://pypi.org/project/wptools/)
+- [beautifulsoup4](https://www.crummy.com/software/BeautifulSoup/bs4/doc/#installing-beautiful-soup)
+- [requests](https://pypi.org/project/requests/)
 
 
 # Running it yourself
@@ -26,7 +27,6 @@ Install the required Python packages with `pip` (or `pip3`)
 ```
 pip install -r requirements.txt
 ```
-(If you have any trouble installing `pycurl`, I found [this](https://stackoverflow.com/a/24051044/8591914) helpful.)
 
 Set up the database, where `python` is the python3 interpreter (make sure you have `albumratingsite/secret_settings.py`)...
 ```
