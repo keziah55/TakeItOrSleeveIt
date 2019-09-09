@@ -90,7 +90,10 @@ def generateTestData():
         votes = random.randint(0, n)
         album.votes = votes
         album.contests = n
-        album.rating = 100 * (album.votes / album.contests) # % rating
+        try:
+            album.rating = 100 * (album.votes / album.contests) # % rating
+        except ZeroDivisionError:
+            album.rating = 0
         album.save()
     print('Generated test data')
     

@@ -3,6 +3,7 @@ from django.urls import reverse
 from django.shortcuts import render
 from .models import Album, Question
 
+import re
 
 def index(request):
     # get all albums
@@ -55,21 +56,30 @@ def vote(request):
     # where ID0 is the id of the selected album and ID1 is the id of the other
     # album presented.
     # There must be a better way of doing this...
-    keys = list(request.POST.keys())
-    keys.remove('csrfmiddlewaretoken')
-    album_id = keys[0] # take the first remaining key
-    album_ids, _ = album_id.split('.') # get the ID, remove the 'x' (or 'y')
-    album_ids = album_ids.split('_') # split into the two IDs
-    album_ids = [int(album_id) for album_id in album_ids] # cast as ints
     
-    # For both IDs, increment the number of contests and the rating
+    # regex to extract the IDs
+    regex = re.compile(r'(\d+)_(\d+)\.x')
+    
+    # for each key, check if regex matches
+    keys = list(request.POST.keys())
+    for key in keys:
+        srch = regex.search(key)
+        if srch is not None:
+            # get IDs as list of ints
+            album_ids = [int(srch.group(i)) for i in [1,2]]
+            break
+    
+    # For both IDs, increment the number of contests and update the rating
     # For the first ID, increment the number of votes
     for idx, album_id in enumerate(album_ids):
         album = Album.objects.get(id=album_id)
         if idx == 0:
             album.votes += 1
         album.contests += 1
-        album.rating = 100 * (album.votes / album.contests) # % rating
+        try:
+            album.rating = 100 * (album.votes / album.contests) # % rating
+        except ZeroDivisionError:
+            album.rating = 0
         album.save()
 
     # Always return an HttpResponseRedirect after successfully dealing
