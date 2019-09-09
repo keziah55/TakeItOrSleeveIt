@@ -28,6 +28,7 @@ def getInfo(name):
     try:
         th = table.find('th', attrs={'class':"summary album"})
         title = th.text
+        title = _capitalise(title)
     except AttributeError:
         msg = 'Could not find album title in infobox'
         raise RuntimeError(msg)
@@ -54,6 +55,7 @@ def getInfo(name):
     try:
         div = table.find('div', attrs={'class':"contributor"})
         artist = div.text
+        artist = _capitalise(artist)
     except AttributeError:
         msg = "Could not find artist in infobox"
         raise RuntimeError(msg)
@@ -70,6 +72,14 @@ def getInfo(name):
         raise RuntimeError(msg)
     
     return title, artist, year, img
+
+
+def _capitalise(s):
+    """ Capitalise the first letter of every word in string `s` """
+    words = s.split(' ')
+    words = [word.capitalize() for word in words]
+    return ' '.join(words)
+
 
 if __name__ == '__main__':
     
