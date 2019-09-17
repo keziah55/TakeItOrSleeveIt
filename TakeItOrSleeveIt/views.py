@@ -5,6 +5,7 @@ from .models import Album, Question
 
 import re
 
+
 def index(request):
     # get all albums
     all_albums = Album.objects.all()
